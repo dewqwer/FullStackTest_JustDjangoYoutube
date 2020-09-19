@@ -81,15 +81,19 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dakj1goctsn1uv',
+        'USER': 'wqhxxtfnobfhkj',
+        'PASSWORD': '2898a9d670c23612d906235a6e839b959561ea4c5cb0ef94c2e1aa3f8a5fe737',
+        'HOST': 'ec2-35-171-31-33.compute-1.amazonaws.com',
+        'PORT': '5432',
+    }
+}
 
-DATABASES['default'] = dj_database_url.config(
-    default='postgres://wqhxxtfnobfhkj:2898a9d670c23612d906235a6e839b959561ea4c5cb0ef94c2e1aa3f8a5fe737@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dakj1goctsn1uv')
+# DATABASES['default'] = dj_database_url.config(
+#     default='postgres://wqhxxtfnobfhkj:2898a9d670c23612d906235a6e839b959561ea4c5cb0ef94c2e1aa3f8a5fe737@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dakj1goctsn1uv')
 
 
 # Password validation
