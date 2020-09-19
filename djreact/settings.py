@@ -89,7 +89,7 @@ WSGI_APPLICATION = 'djreact.wsgi.application'
 # }
 
 DATABASES['default'] = dj_database_url.config(
-    default='postgres://pukyczbgvfflkm:534bdfcdb91667272140df2eb2cf8668fb5fcf65957d470605eecb11f6e42178@ec2-3-230-106-126.compute-1.amazonaws.com:5432/d9il9qj7dbr5n3')
+    default='postgres://wqhxxtfnobfhkj:2898a9d670c23612d906235a6e839b959561ea4c5cb0ef94c2e1aa3f8a5fe737@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dakj1goctsn1uv')
 
 
 # Password validation
