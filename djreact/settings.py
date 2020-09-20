@@ -26,7 +26,7 @@ SECRET_KEY = '7*mtbfx0&qo&37m#ztqmy*8*sgny=@%ef4ix5h_nl==gamha5%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
+ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
@@ -133,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static')
 ]
@@ -148,6 +149,8 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = [
     'https://localhost:3000',
