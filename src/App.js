@@ -4,7 +4,19 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <h1>Hello! Test for Heroku Deploy App</h1>
+      <header className="App-header">
+        <p>
+          Hello! My friends I did it!
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
