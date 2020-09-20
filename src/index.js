@@ -8,7 +8,8 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
+  // document.getElementById('root')
+  alert("Hello From index.js")
 );
 
 // If you want your app to work offline and load faster, you can change
