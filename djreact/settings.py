@@ -164,7 +164,8 @@ CORS_ORIGIN_WHITELIST = [
 ]
 
 WHITENOISE_MIMETYPES = {
-    '.js': 'text/html'
+    '.js': 'text/javascript',
+    ".mjs": "text/javascript",
 }
 
 
