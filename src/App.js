@@ -1,27 +1,41 @@
 import React, { Component } from 'react';
-import './App.css';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { connect } from 'react-redux';
+import BaseRouter from './routes';
+import 'antd/dist/antd.css';
+import * as actions from './store/actions/auth';
+
+import CustomLayout from './containers/Layout';
 
 class App extends Component {
-  render() {
 
+  componentDidMount() {
+    this.props.onTryAutoSignup();
+  }
+
+  render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p>
-            Hello! My friends I did it!
-        </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-        </a>
-        </header>
+      <div>
+        <Router>
+          <CustomLayout {...this.props}>
+            <BaseRouter />
+          </CustomLayout>
+        </Router>
       </div>
     );
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onTryAutoSignup: () => dispatch(actions.authCheckState())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
