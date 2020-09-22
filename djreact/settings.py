@@ -163,6 +163,11 @@ CORS_ORIGIN_WHITELIST = [
     'https://localhost:3000',
 ]
 
+WHITENOISE_MIMETYPES = {
+    '.js': 'text/html'
+}
+
+
 CSRF_COOKIE_NAME = "csrftoken"
 
 ACCOUNT_EMAIL_REQUIRED = False
