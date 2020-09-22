@@ -1,65 +1,56 @@
-import React from 'react';
-import { Layout, Menu, Breadcrumb } from 'antd';
-import { Link, withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import * as actions from '../store/actions/auth';
+import React from "react";
+import { List, Avatar, Icon } from "antd";
 
-const { Header, Content, Footer } = Layout;
+const IconText = ({ type, text }) => (
+    <span>
+        <Icon
+            type={type}
+            style={{
+                marginRight: 8
+            }}
+        />
+        {text}
+    </span>
+);
 
-class CustomLayout extends React.Component {
-    render() {
-        return (
-            <Layout className="layout">
-                <Header>
-                    <div className="logo" />
-                    <Menu
-                        theme="dark"
-                        mode="horizontal "
-                        defaultSelectedKeys={['2']}
-                        style={{ lineHeight: '64px' }}
-                    >
+const Articles = props => {
+    return (
+        <List
+            itemLayout="vertical"
+            size="large"
+            pagination={{
+                onChange: page => {
+                    console.log(page);
+                },
+                pageSize: 3
+            }}
+            dataSource={props.data}
+            renderItem={item => (
+                <List.Item
+                    key={item.title}
+                    actions={[
+                        <IconText type="star-o" text="156" />,
+                        <IconText type="like-o" text="156" />,
+                        <IconText type="message" text="2" />
+                    ]}
+                    extra={
+                        <img
+                            width={272}
+                            alt="logo"
+                            src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png"
+                        />
+                    }
+                >
+                    <List.Item.Meta
+                        avatar={<Avatar src={item.avatar} />}
+                        title={<a href={`/articles/${item.id}`}> {item.title} </a>}
+                        description={item.description}
+                    />
+                    {item.content}
+                </List.Item>
+            )}
+        />
+    );
+};
 
-                        {
-                            this.props.isAuthenticated ?
-
-                                <Menu.Item key="2" onClick={this.props.logout}>
-                                    Logout
-                    </Menu.Item>
-
-                                :
-
-                                <Menu.Item key="2">
-                                    <Link to="/login">Login</Link>
-                                </Menu.Item>
-                        }
-
-                        <Menu.Item key="1">
-                            <Link to="/">Posts</Link>
-                        </Menu.Item>
-
-                    </Menu>
-                </Header>
-                <Content style={{ padding: '0 50px' }}>
-                    <Breadcrumb style={{ margin: '16px 0' }}>
-                        <Breadcrumb.Item><Link to="/">Home</Link></Breadcrumb.Item>
-                        <Breadcrumb.Item><Link to="/">List</Link></Breadcrumb.Item>
-                    </Breadcrumb>
-                    <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                        {this.props.children}
-                    </div>
-                </Content>
-                <Footer style={{ textAlign: 'center' }}>
-                    Ant Design ©2016 Created by Ant UED
-                </Footer>
-            </Layout>
-        );
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        logout: () => dispatch(actions.logout())
-    }
-}
-
-export default withRouter(connect(null, mapDispatchToProps)(CustomLayout));
+export default Articles;

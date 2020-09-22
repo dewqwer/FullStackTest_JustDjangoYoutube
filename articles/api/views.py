@@ -11,11 +11,13 @@ from .serializers import FacultySerializer
 class FacultyListView(ListAPIView):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
+    permission_classes = (permissions.AllowAny, )
 
 
 class FacultyDetailView(RetrieveAPIView):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
+    permission_classes = (permissions.AllowAny, )
 
 
 class FacultyCreateView(CreateAPIView):
