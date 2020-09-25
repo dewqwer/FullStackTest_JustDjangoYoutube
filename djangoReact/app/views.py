@@ -5,7 +5,7 @@ import os
 import logging
 from django.conf import settings
 
-from .serializers import UserSerializer, UserSerializerWithToken
+from app.serializer import UserSerializer, UserSerializerWithToken
 from rest_framework import viewsets, mixins, permissions, status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
