@@ -28,7 +28,7 @@ SECRET_KEY = '8$jgb+x03%xiy*drf3%4sad80w6ln*s_t=5bcdk6l@9bo6q6tr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://fullstacktest-justdjango.herokuapp.com/']
+ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
 
 REACT_APP_DIR = os.path.join(BASE_DIR, 'django-react-web')
 
