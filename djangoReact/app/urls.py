@@ -1,3 +1,5 @@
+from django.contrib import admin
+
 from django.urls import path, include, re_path
 from django.conf.urls import url
 from django.conf import settings
@@ -7,9 +9,10 @@ from .views import UserViewSetForCreatingUser, UserViewSet
 from rest_framework.routers import DefaultRouter
 from rest_framework_jwt.views import obtain_jwt_token
 
-router = DefaultRouter()
-router.register(r'user', UserViewSet)
-router.register(r'createuser', UserViewSetForCreatingUser)
+from django.conf.urls.static import static
+from .views import index
+
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
-]
+    path('', index, name="index"),
+    path('admin/', admin.site.urls),
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

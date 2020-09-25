@@ -33,8 +33,11 @@ ALLOWED_HOSTS = []
 REACT_APP_DIR = os.path.join(BASE_DIR, 'django-react-web')
 
 STATICFILES_DIRS = [
-    os.path.join(REACT_APP_DIR, 'build', 'static'),
+    os.path.join(REACT_APP_DIR, 'out', '_next'),
 ]
+
+STATIC_ROOT = os.path.join(REACT_APP_DIR, 'out')
+
 
 JWT_AUTH = {
     'JWT_RESPONSE_PAYLOAD_HANDLER': 'app.utils.my_jwt_response_handler'
@@ -54,7 +57,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
 
 ]
 
@@ -141,7 +144,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/_next/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
