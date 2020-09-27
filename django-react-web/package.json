@@ -8,15 +8,18 @@
     "@testing-library/user-event": "^7.2.1",
     "@zeit/next-css": "^1.0.1",
     "css-loader": "^4.3.0",
+    "firebase": "^7.21.1",
     "next": "^9.5.3",
     "next-images": "^1.5.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
     "sass-loader": "^10.0.2",
-    "style-loader": "^1.2.1"
+    "style-loader": "^1.2.1",
+    "trim": "0.0.1"
   },
   "proxy": "http://localhost:8000",
+  "homepage": ".",
   "scripts": {
     "dev": "next",
     "build": "next build & next export",
