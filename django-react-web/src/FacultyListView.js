@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import Facultys from "../components/Faculty";
-// import CustomForm from "../components/Form";
+import Facultys from "../Component/Faculty";
+import CustomForm from "./Component/Form";
 
 
 class FacultyList extends React.Component {

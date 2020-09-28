@@ -8,7 +8,7 @@ const FormItem = Form.Item;
 
 class Faculty extends React.Component {
 
-    handleFormSubmit = async (event, requestType, FacultyID) => {
+    handleFormSubmit = async (event, requestType, facultyID) => {
         event.preventDefault();
 
         const postObj = {
@@ -48,15 +48,28 @@ class Faculty extends React.Component {
                         this.handleFormSubmit(
                             event,
                             this.props.requestType,
-                            this.props.FacultyID
+                            this.props.facultyID
                         )
                     }
                 >
-                    <FormItem label="Title">
-                        <Input name="title" placeholder="Put a title here" />
+                    <FormItem label="facultyName">
+                        <Input name="facultyName" placeholder="Put a facultyName here" />
                     </FormItem>
-                    <FormItem label="Content">
-                        <Input name="content" placeholder="Enter some content ..." />
+
+                    <FormItem label="peopleInFaculty">
+                        <Input name="peopleInFaculty" placeholder="Enter some content ..." />
+                    </FormItem>
+
+                    <FormItem label="university">
+                        <Input name="university" placeholder="Put a title here" />
+                    </FormItem>
+
+                    <FormItem label="queueFaculty">
+                        <Input name="queueFaculty" placeholder="Enter some content ..." />
+                    </FormItem>
+
+                    <FormItem label="queueFacultyPassed">
+                        <Input name="queueFacultyPassed" placeholder="Enter some content ..." />
                     </FormItem>
                     <FormItem>
                         <Button type="primary" htmlType="submit">
