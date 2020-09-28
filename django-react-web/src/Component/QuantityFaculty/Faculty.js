@@ -1,56 +1,78 @@
-import React, { Component } from 'react';
-import FacultyList from './ShowFaculty';
-// import firebase from 'firebase';
-import AddBox from './AddFaculty';
-import QuestionIcon from '../../IMG/Question.jpg';
-import NextIcon from '../../IMG/Next.jpg';
+import React from "react";
+import { Form, Input, Button } from "antd";
+import { connect } from "react-redux";
+import axios from "axios";
 
-class Faculty extends Component {
-    // constructor(props) {
-    //     super(props); var firebaseConfig = {
-    //         apiKey: "AIzaSyCgerCkI1mr7e07xWQzKP4NVyB9oC3XwU4",
-    //         authDomain: "senior-fai.firebaseapp.com",
-    //         databaseURL: "https://senior-fai.firebaseio.com",
-    //         projectId: "senior-fai",
-    //         storageBucket: "senior-fai.appspot.com",
-    //         messagingSenderId: "862530252379",
-    //         appId: "1:862530252379:web:8be01dd78daa026dee997e",
-    //         measurementId: "G-YBP3PN9PEF"
-    //     };
-    //     if (!firebase.apps.length) {
-    //         firebase.initializeApp(firebaseConfig);
-    //         firebase.analytics();
-    //     }
-    // }
+const FormItem = Form.Item;
+
+
+class Faculty extends React.Component {
+
+    handleFormSubmit = async (event, requestType, FacultyID) => {
+        event.preventDefault();
+
+        const postObj = {
+            title: event.target.elements.title.value,
+            content: event.target.elements.content.value
+        }
+
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        axios.defaults.xsrfCookieName = "csrftoken";
+        axios.defaults.headers = {
+            "Content-Type": "application/json",
+            Authorization: `Token ${this.props.token}`,
+        };
+
+        if (requestType === "post") {
+            await axios.post("http://127.0.0.1:8000/create/", postObj)
+                .then(res => {
+                    if (res.status === 201) {
+                        this.props.history.push(`/`);
+                    }
+                })
+        } else if (requestType === "put") {
+            await axios.put(`http://127.0.0.1:8000/${facultyID}/update/`, postObj)
+                .then(res => {
+                    if (res.status === 200) {
+                        this.props.history.push(`/`);
+                    }
+                })
+        }
+    };
+
     render() {
         return (
-            // <div className="background">
-            /* <div className="question">
-                    <img width="2%" onClick={this.question} src={QuestionIcon}></img>
-                </div>
-                <div className="block">
-                    <FacultyList db={firebase} />
-                    <div>
-                        <img src={NextIcon} width="3%" className="Next"></img>
-                    </div>
-                </div>
-                <div>
-                    <div>
-                        <AddBox db={firebase} />
-                    </div>
-                </div> */
-
-
-
-            // </div>
-            < div >
-                <p> This page must show all list faculty. </p >
-
-                <p> แสดงคณะทั้งหมดที่มี </p>
-
-            </div >
+            <div>
+                <Form
+                    onSubmit={event =>
+                        this.handleFormSubmit(
+                            event,
+                            this.props.requestType,
+                            this.props.FacultyID
+                        )
+                    }
+                >
+                    <FormItem label="Title">
+                        <Input name="title" placeholder="Put a title here" />
+                    </FormItem>
+                    <FormItem label="Content">
+                        <Input name="content" placeholder="Enter some content ..." />
+                    </FormItem>
+                    <FormItem>
+                        <Button type="primary" htmlType="submit">
+                            {this.props.btnText}
+                        </Button>
+                    </FormItem>
+                </Form>
+            </div>
         );
-    };
+    }
 }
+
+const mapStateToProps = state => {
+    return {
+        token: state.token
+    };
+};
 
 export default Faculty;

@@ -28,9 +28,9 @@ SECRET_KEY = '8$jgb+x03%xiy*drf3%4sad80w6ln*s_t=5bcdk6l@9bo6q6tr'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
+# ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
 
-# ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1']
 
 REACT_APP_DIR = os.path.join(BASE_DIR, 'django-react-web')
 
@@ -78,7 +78,7 @@ ROOT_URLCONF = 'djangoReact.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [REACT_APP_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -104,13 +104,13 @@ DATABASES = {
 }
 
 # ใช้เฉพาะตอนที่ run local
-# DATABASES['default'] = dj_database_url.config(
-#     default='postgres://wqhxxtfnobfhkj:2898a9d670c23612d906235a6e839b959561ea4c5cb0ef94c2e1aa3f8a5fe737@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dakj1goctsn1uv')
+DATABASES['default'] = dj_database_url.config(
+    default='postgres://wqhxxtfnobfhkj:2898a9d670c23612d906235a6e839b959561ea4c5cb0ef94c2e1aa3f8a5fe737@ec2-35-171-31-33.compute-1.amazonaws.com:5432/dakj1goctsn1uv')
 
 # ใช้กับตอนที่ deploy
-DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
-}
+# DATABASES = {
+#     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+# }
 
 
 # Password validation
