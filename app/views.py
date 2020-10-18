@@ -7,6 +7,17 @@ import os
 import logging
 from django.conf import settings
 
+# import asyncio
+# import datetime
+# import random
+# import websockets
+import json
+
+
+from django.http import JsonResponse
+
+# from .utils import realTimeNum
+
 # from app.serializer import UserSerializer, UserSerializerWithToken
 # from rest_framework import viewsets, mixins, permissions, status
 # from rest_framework.decorators import api_view
@@ -84,6 +95,7 @@ from rest_framework.generics import (
 index_file_path = os.path.join(settings.REACT_APP_DIR, 'out',
                                'index.html')
 
+number_file_path = os.path.join(settings.REACT_APP_DIR,'src','showNumber.html')
 
 def index(request):
     try:
@@ -94,6 +106,40 @@ def index(request):
         return HttpResponse(
             status=501,
         )
+
+
+
+
+def socket(request):
+    count_model = {
+            "people_count": 1,
+            "x": 2,
+            "y": 3,
+        }
+    # return JsonResponse(count_model)
+
+    try:
+        with open(number_file_path) as f:
+            return HttpResponse(json.dumps(count_model), content_type="application/json")
+            # return HttpResponse(realTimeNum, content_type="application/json")
+    except FileNotFoundError:
+        logging.exception('Production build of app not found')
+        return HttpResponse(
+            status=501,
+        )
+
+    # people = people_main.PeopleCounter()
+    # people_count = people.people_count
+
+    # while True:
+    #     now = datetime.datetime.utcnow().isoformat()
+    #         "people_count": str(people_count),
+    #         "time": str(now),
+
+    #     counter_json = json.dumps(count_model)
+    #     await websocket.send(counter_json)
+
+    # return json.dumps(count_model)
 
 
 class FacultyListView(ListAPIView):

@@ -13,6 +13,8 @@ from django.conf.urls.static import static
 from .views import index
 from app.views import FacultyCreateView, FacultyDeleteView, FacultyDetailView, FacultyListView, FacultyUpdateView
 
+from .views import socket
+
 urlpatterns = [
     path('', index, name="index"),
     path('admin/', admin.site.urls),
@@ -21,7 +23,11 @@ urlpatterns = [
     path('create/', FacultyCreateView.as_view()),
     path('<pk>', FacultyDetailView.as_view()),
     path('<pk>/update/', FacultyUpdateView.as_view()),
-    path('<pk>/delete/', FacultyDeleteView.as_view())
+    path('<pk>/delete/', FacultyDeleteView.as_view()),
+    
+    path('showNum/', socket)
+
+
 
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
