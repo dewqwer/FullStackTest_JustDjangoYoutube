@@ -6,6 +6,7 @@ from django.http import HttpResponse
 import os
 import logging
 from django.conf import settings
+import datetime
 
 # import asyncio
 # import datetime
@@ -111,22 +112,39 @@ def index(request):
 
 
 def socket(request):
+    x = datetime.datetime.now()
+
+    # x=1
+    
     count_model = {
-            "people_count": 1,
-            "x": 2,
-            "y": 3,
-        }
+            "people_count": str(x),
+            
+    }
+
+
+    # while(x<=10):
+    #     x=x+1
+    #     count_model = {
+    #         "people_count": 1,
+    #         "x": x,
+    #         "y": 3,
+    #     }
+    
+    return HttpResponse(json.dumps(count_model), content_type="application/json")
+
+
+
     # return JsonResponse(count_model)
 
-    try:
-        with open(number_file_path) as f:
-            return HttpResponse(json.dumps(count_model), content_type="application/json")
-            # return HttpResponse(realTimeNum, content_type="application/json")
-    except FileNotFoundError:
-        logging.exception('Production build of app not found')
-        return HttpResponse(
-            status=501,
-        )
+    # try:
+    #     with open(number_file_path) as f:
+    #         # return HttpResponse(json.dumps(count_model), content_type="application/json")
+    #         return HttpResponse(realTimeNum, content_type="application/json")
+    # except FileNotFoundError:
+    #     logging.exception('Production build of app not found')
+    #     return HttpResponse(
+    #         status=501,
+    #     )
 
     # people = people_main.PeopleCounter()
     # people_count = people.people_count
