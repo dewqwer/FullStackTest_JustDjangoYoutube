@@ -1,8 +1,8 @@
 # import the necessary packages
-from .library.counter import m_frame_management as mfm
-from .library.counter import m_frame_set_management as mfsm
-from .library.counter import crop_management as cm
-from .library.counter import filter_and_check_error_management as fem
+from app.model.people_counter.graduation_ceremony.V9_1.library.counter import m_frame_management as mfm
+from app.model.people_counter.graduation_ceremony.V9_1.library.counter import m_frame_set_management as mfsm
+from app.model.people_counter.graduation_ceremony.V9_1.library.counter import crop_management as cm
+from app.model.people_counter.graduation_ceremony.V9_1.library.counter import filter_and_check_error_management as fem
 from imutils.video import VideoStream
 from imutils.video import FPS
 import numpy as np
@@ -77,16 +77,16 @@ class PeopleCounter:
     # ap.add_argument("-m_ferr", "--m_ferr", type=str, default=path_m_ferr_log_DT3,
     # help="path_log")
 
-    ap.add_argument("-o", "--output", type=str, default="E:/output_1t8.avi",
-                    help="path to optional output video file")
-    ap.add_argument("-ocw", "--outputOfcropwhite", type=str, default="D:/outputOfcropwhite.avi",  # outputOfcropwhite.MJPG
-                    help="path to optional output video file")
-    ap.add_argument("-c", "--confidence", type=float, default=0.4,
-                    help="minimum probability to filter weak detections")
-    ap.add_argument("-s", "--skip-frames", type=int, default=1,
-                    help="# of skip frames between detections")
+    # ap.add_argument("-o", "--output", type=str, default="E:/output_1t8.avi",
+    #                 help="path to optional output video file")
+    # ap.add_argument("-ocw", "--outputOfcropwhite", type=str, default="D:/outputOfcropwhite.avi",  # outputOfcropwhite.MJPG
+    #                 help="path to optional output video file")
+    # ap.add_argument("-c", "--confidence", type=float, default=0.4,
+    #                 help="minimum probability to filter weak detections")
+    # ap.add_argument("-s", "--skip-frames", type=int, default=1,
+    #                 help="# of skip frames between detections")
 
-    args = vars(ap.parse_args())
+    # args = vars(ap.parse_args())
 
     # var_________Start_______________________________________________________________
     mfsm_arm = mfsm.MFrameSetManagement()
@@ -113,98 +113,106 @@ class PeopleCounter:
     # s_s = open("D:/status_slope.txt", "a")
     # s_cl = open("D:/status_counter_lock.txt", "a")
 
+    i_mf_a = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg.txt", "a")
+    i_mf_a_lpft = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg_lpft.txt", "a")
+    i_mf_err = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_err_avg.txt", "a")
+    i_suw = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/info_slope_up_wave_count.txt", "a")
+    i_tf = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/info_total_frame.txt", "a")
 
-    
-    i_mf_a = open("C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg.txt", "a")
-    i_mf_a_lpft = open("C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg_lpft.txt", "a")
-    i_mf_err = open("C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_err_avg.txt", "a")
-    i_suw = open("C:/Users/Dew2020/Desktop/60130500120/Project/info_slope_up_wave_count.txt", "a")
-    i_tf = open("C:/Users/Dew2020/Desktop/60130500120/Project/info_total_frame.txt", "a")
+    s_mf_err = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/status_log_mframe_err_avg.txt", "a")
+    s_fl = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/status_log_filter_low_value.txt", "a")
+    s_s = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/status_slope.txt", "a")
+    s_cl = open(
+        "C:/Users/Dew2020/Desktop/60130500120/Project/status_counter_lock.txt", "a")
 
-
-    s_mf_err = open("C:/Users/Dew2020/Desktop/60130500120/Project/status_log_mframe_err_avg.txt", "a")
-    s_fl = open("C:/Users/Dew2020/Desktop/60130500120/Project/status_log_filter_low_value.txt", "a")
-    s_s = open("C:/Users/Dew2020/Desktop/60130500120/Project/status_slope.txt", "a")
-    s_cl = open("C:/Users/Dew2020/Desktop/60130500120/Project/status_counter_lock.txt", "a")
-
-    f = open(str(args.get("log")), "a")
+    # f = open(str(args.get("log")), "a")
 
     print("[INFO] loading model MOG2...")
 
-    if args.get("algo") == 'MOG2':
-        backSub = cv2.createBackgroundSubtractorMOG2()
-    else:
-        backSub = cv2.createBackgroundSubtractorKNN()
+    # if args.get("algo") == 'MOG2':
+    backSub = cv2.createBackgroundSubtractorMOG2()
+    # else:
+     # backSub = cv2.createBackgroundSubtractorKNN()
 
-    # if a video path was not supplied, grab a reference to the webcam
-    if not args.get("input", False):
-        print("[INFO] starting video stream...")
-        # # f.write("[INFO] starting video stream...\n")
-        vs = VideoStream(src=0).start()
-        time.sleep(2.0)
+    # # if a video path was not supplied, grab a reference to the webcam
+    # if not args.get("input", False):
+    #     print("[INFO] starting video stream...")
+    #     # # f.write("[INFO] starting video stream...\n")
+    #     vs = VideoStream(src=0).start()
+    #     time.sleep(2.0)
 
-        i_mf_a.write("Start : "+str(datetime.datetime.now()) +
-                     "___________________________________________")
-        i_mf_a_lpft.write("Start : "+str(datetime.datetime.now()) +
-                          "___________________________________________")
-        i_mf_err.write("Start : "+str(datetime.datetime.now()) +
-                       "___________________________________________")
-        i_suw.write("Start : "+str(datetime.datetime.now()) +
-                    "___________________________________________")
-        i_tf.write("Start : "+str(datetime.datetime.now()) +
-                   "___________________________________________")
+    #     i_mf_a.write("Start : "+str(datetime.datetime.now()) +
+    #                  "___________________________________________")
+    #     i_mf_a_lpft.write("Start : "+str(datetime.datetime.now()) +
+    #                       "___________________________________________")
+    #     i_mf_err.write("Start : "+str(datetime.datetime.now()) +
+    #                    "___________________________________________")
+    #     i_suw.write("Start : "+str(datetime.datetime.now()) +
+    #                 "___________________________________________")
+    #     i_tf.write("Start : "+str(datetime.datetime.now()) +
+    #                "___________________________________________")
 
-        s_mf_err.write("Start : "+str(datetime.datetime.now()) +
-                       "___________________________________________")
-        s_fl.write("Start : "+str(datetime.datetime.now()) +
-                   "___________________________________________")
-        s_s.write("Start : "+str(datetime.datetime.now()) +
-                  "___________________________________________")
-        s_cl.write("Start : "+str(datetime.datetime.now()) +
-                   "___________________________________________")
+    #     s_mf_err.write("Start : "+str(datetime.datetime.now()) +
+    #                    "___________________________________________")
+    #     s_fl.write("Start : "+str(datetime.datetime.now()) +
+    #                "___________________________________________")
+    #     s_s.write("Start : "+str(datetime.datetime.now()) +
+    #               "___________________________________________")
+    #     s_cl.write("Start : "+str(datetime.datetime.now()) +
+    #                "___________________________________________")
 
-        i_mf_a.write("\n")
-        i_mf_a_lpft.write("\n")
-        i_mf_err.write("\n")
-        i_suw.write("\n")
-        i_tf.write("\n")
+    #     i_mf_a.write("\n")
+    #     i_mf_a_lpft.write("\n")
+    #     i_mf_err.write("\n")
+    #     i_suw.write("\n")
+    #     i_tf.write("\n")
 
-        s_mf_err.write("\n")
-        s_fl.write("\n")
-        s_s.write("\n")
-        s_cl.write("\n")
+    #     s_mf_err.write("\n")
+    #     s_fl.write("\n")
+    #     s_s.write("\n")
+    #     s_cl.write("\n")
 
-        i_mf_a.write("[INFO] starting video stream...")
-        i_mf_a_lpft.write("[INFO] starting video stream...")
-        i_mf_err.write("[INFO] starting video stream...")
-        i_suw.write("[INFO] starting video stream...")
-        i_tf.write("[INFO] starting video stream...")
+    #     i_mf_a.write("[INFO] starting video stream...")
+    #     i_mf_a_lpft.write("[INFO] starting video stream...")
+    #     i_mf_err.write("[INFO] starting video stream...")
+    #     i_suw.write("[INFO] starting video stream...")
+    #     i_tf.write("[INFO] starting video stream...")
 
-        s_mf_err.write("[INFO] starting video stream...")
-        s_fl.write("[INFO] starting video stream...")
-        s_s.write("[INFO] starting video stream...")
-        s_cl.write("[INFO] starting video stream...")
+    #     s_mf_err.write("[INFO] starting video stream...")
+    #     s_fl.write("[INFO] starting video stream...")
+    #     s_s.write("[INFO] starting video stream...")
+    #     s_cl.write("[INFO] starting video stream...")
 
-        i_mf_a.write("\n")
-        i_mf_a_lpft.write("\n")
-        i_mf_err.write("\n")
-        i_suw.write("\n")
-        i_tf.write("\n")
+    #     i_mf_a.write("\n")
+    #     i_mf_a_lpft.write("\n")
+    #     i_mf_err.write("\n")
+    #     i_suw.write("\n")
+    #     i_tf.write("\n")
 
-        s_mf_err.write("\n")
-        s_fl.write("\n")
-        s_s.write("\n")
-        s_cl.write("\n")
+    #     s_mf_err.write("\n")
+    #     s_fl.write("\n")
+    #     s_s.write("\n")
+    #     s_cl.write("\n")
 
-    # otherwise, grab a reference to the video file
-    else:
-        print("[INFO] opening video file...")
-        # # f.write("[INFO] opening video file...\n")
+    # # otherwise, grab a reference to the video file
+    # else:
+    #  print("[INFO] opening video file...")
+      # # f.write("[INFO] opening video file...\n")
 
-        vs = cv2.VideoCapture(args["input"])
-        if not vs.isOpened:
-            print('Unable to open: ' + args.input)
-            exit(0)
+      # vs = cv2.VideoCapture(args["input"])
+    vs = cv2.VideoCapture(path_vdo_input_NB3_1t)
+
+    if not vs.isOpened:
+        # print('Unable to open: ' + args.input)
+        exit(0)
 
         i_mf_a.write("Start : "+str(datetime.datetime.now()) +
                      "___________________________________________")
@@ -297,11 +305,12 @@ class PeopleCounter:
         # grab the next c_frame and handle if we are reading from either
         # VideoCapture or VideoStream
         c_frame = vs.read()
-        c_frame = c_frame[1] if args.get("input", False) else c_frame
+        c_frame = c_frame[1] if path_vdo_input_NB3_1t else c_frame
 
         # if we are viewing a video and we did not grab a frame then we
         # have reached the end of the video
-        if args["input"] is not None and c_frame is None:
+        # if args["input"] is not None and c_frame is None:
+        if path_vdo_input_NB3_1t is not None and c_frame is None:
             break
 
         # resize the frame to have a maximum width of 500 pixels (the
@@ -460,9 +469,11 @@ class PeopleCounter:
 
         # if we are supposed to be writing a video to disk, initialize
         # the writer
-        if args["output"] is not None and writer is None:
+        # if args["output"] is not None and writer is None:
             fourcc = cv2.VideoWriter_fourcc(*"MJPG")
-            writer = cv2.VideoWriter(args["output"], fourcc, 30,
+            # writer = cv2.VideoWriter(args["output"], fourcc, 30,
+            writer = cv2.VideoWriter("C:/Users/Dew2020/Desktop/output.avi", fourcc, 30,
+
                                      (W, H), True)
 
         # if args["outputOfcropwhite"] is not None and writerOfcropwhite is None:
