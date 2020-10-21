@@ -96,7 +96,9 @@ from rest_framework.generics import (
 index_file_path = os.path.join(settings.REACT_APP_DIR, 'out',
                                'index.html')
 
-number_file_path = os.path.join(settings.REACT_APP_DIR,'src','showNumber.html')
+number_file_path = os.path.join(
+    settings.REACT_APP_DIR, 'src', 'showNumber.html')
+
 
 def index(request):
     try:
@@ -109,18 +111,16 @@ def index(request):
         )
 
 
-
-
 def socket(request):
     x = datetime.datetime.now()
 
     # x=1
-    
-    count_model = {
-            "people_count": str(x),
-            
-    }
 
+    count_model = {
+        "people_count": str(x),
+        "num": 15,
+
+    }
 
     # while(x<=10):
     #     x=x+1
@@ -129,12 +129,10 @@ def socket(request):
     #         "x": x,
     #         "y": 3,
     #     }
-    
-    return HttpResponse(json.dumps(count_model), content_type="application/json")
 
+    # return HttpResponse(json.dumps(count_model), content_type="application/json")
 
-
-    # return JsonResponse(count_model)
+    return JsonResponse(count_model)
 
     # try:
     #     with open(number_file_path) as f:
