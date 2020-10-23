@@ -15,48 +15,48 @@ import sys
 import datetime
 # import cv
 
-path_vdo_input_NB3_1t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_1_Trim.mp4"
-path_vdo_input_NB3_2 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_2.mp4"
-path_vdo_input_NB3_3 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_3.mp4"
-path_vdo_input_NB3_4t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_4_Trim.mp4"
-path_vdo_input_NB3_5t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_5_Trim.mp4"
-path_vdo_input_NB3_6 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_6.mp4"
-path_vdo_input_NB3_7 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_7.mp4"
-path_vdo_input_NB3_8t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_8_Trim.mp4"
+# path_vdo_input_NB3_1t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_1_Trim.mp4"
+# path_vdo_input_NB3_2 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_2.mp4"
+# path_vdo_input_NB3_3 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_3.mp4"
+# path_vdo_input_NB3_4t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_4_Trim.mp4"
+# path_vdo_input_NB3_5t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_5_Trim.mp4"
+# path_vdo_input_NB3_6 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_6.mp4"
+# path_vdo_input_NB3_7 = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_7.mp4"
+# path_vdo_input_NB3_8t = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_8_Trim.mp4"
 
 
-# path_vdo_input_DT3_1t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_1_Trim.mp4"
-# path_vdo_input_DT3_2 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_2.mp4"
-# path_vdo_input_DT3_3 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_3.mp4"
-# path_vdo_input_DT3_4t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_4_Trim.mp4"
-# path_vdo_input_DT3_5t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_5_Trim.mp4"
-# path_vdo_input_DT3_6 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_6.mp4"
-# path_vdo_input_DT3_7 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_7.mp4"
-# path_vdo_input_DT3_8t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_8_Trim.mp4"
+path_vdo_input_DT3_1t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_1_Trim.mp4"
+path_vdo_input_DT3_2 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_2.mp4"
+path_vdo_input_DT3_3 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_3.mp4"
+path_vdo_input_DT3_4t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_4_Trim.mp4"
+path_vdo_input_DT3_5t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_5_Trim.mp4"
+path_vdo_input_DT3_6 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_6.mp4"
+path_vdo_input_DT3_7 = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_7.mp4"
+path_vdo_input_DT3_8t = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/G_KMUTT_2561_P_8_Trim.mp4"
 
 
 # "C:/GithubProjects/Work_Of_SIT.KMUTT/INT353/INT353_Senior-Project/NUMSHOW_BANDIT/model/people_counter/graduation_ceremony/output/log_program.txt"
 # path_log_DT3 = "D:/m_frame_crop_arm_mean_lpft_current.txt"
-# path_log_DTDew = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/output/log_program.txt"
+path_log_DTDew = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/output/log_program.txt"
 
 # "C:/GithubProjects/Work of SIT.KMUTT/INT353/INT353_Senior-Project/NUMSHOW_BANDIT/model/people_counter/graduation_ceremony/output/log_program.txt"
 # path_log_NB5 = "D:/log_program.txt"
-path_log_NBDew = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/output/log_program.txt"
+# path_log_NBDew = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/output/log_program.txt"
 
 # "C:/GithubProjects/Work_Of_SIT.KMUTT/INT353/INT353_Senior-Project/NUMSHOW_BANDIT/model/people_counter/graduation_ceremony/output/purelog_program.txt"
 # path_purelog_DT3 = "D:/m_frame_crop_peoplepass_flashcheck_mean_current.txt"
-# path_purelog_DTDew = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/output/purelog_program.txt"
+path_purelog_DTDew = "C:/Users/Dew2018/Desktop/60130500120/Project/VDO/output/purelog_program.txt"
 
 
 # "C:/GithubProjects/Work of SIT.KMUTT/INT353/INT353_Senior-Project/NUMSHOW_BANDIT/model/people_counter/graduation_ceremony/output/purelog_program.txt"
 # path_purelog_NB5 = "D:/purelog_program.txt"
-path_purelog_NBDew = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/output/purelog_program.txt"
+# path_purelog_NBDew = "C:/Users/Dew2020/Desktop/60130500120/Project/VDO/output/purelog_program.txt"
 
 
 class PeopleCounter:
 
     ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--input", type=str, default=path_vdo_input_NB3_1t,
+    ap.add_argument("-i", "--input", type=str, default=path_vdo_input_DT3_1t,
                     help="path to optional input video file")
 
     # sum log
@@ -113,25 +113,45 @@ class PeopleCounter:
     # s_s = open("D:/status_slope.txt", "a")
     # s_cl = open("D:/status_counter_lock.txt", "a")
 
+    # i_mf_a = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg.txt", "a")
+    # i_mf_a_lpft = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg_lpft.txt", "a")
+    # i_mf_err = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_err_avg.txt", "a")
+    # i_suw = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/info_slope_up_wave_count.txt", "a")
+    # i_tf = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/info_total_frame.txt", "a")
+
+    # s_mf_err = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/status_log_mframe_err_avg.txt", "a")
+    # s_fl = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/status_log_filter_low_value.txt", "a")
+    # s_s = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/status_slope.txt", "a")
+    # s_cl = open(
+    #     "C:/Users/Dew2020/Desktop/60130500120/Project/status_counter_lock.txt", "a")
+
     i_mf_a = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/info_log_mframe_arm_avg.txt", "a")
     i_mf_a_lpft = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_arm_avg_lpft.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/info_log_mframe_arm_avg_lpft.txt", "a")
     i_mf_err = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/info_log_mframe_err_avg.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/info_log_mframe_err_avg.txt", "a")
     i_suw = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/info_slope_up_wave_count.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/info_slope_up_wave_count.txt", "a")
     i_tf = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/info_total_frame.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/info_total_frame.txt", "a")
 
     s_mf_err = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/status_log_mframe_err_avg.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/status_log_mframe_err_avg.txt", "a")
     s_fl = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/status_log_filter_low_value.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/status_log_filter_low_value.txt", "a")
     s_s = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/status_slope.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/status_slope.txt", "a")
     s_cl = open(
-        "C:/Users/Dew2020/Desktop/60130500120/Project/status_counter_lock.txt", "a")
+        "C:/Users/Dew2018/Desktop/60130500120/Project/status_counter_lock.txt", "a")
 
     # f = open(str(args.get("log")), "a")
 
@@ -140,7 +160,7 @@ class PeopleCounter:
     # if args.get("algo") == 'MOG2':
     backSub = cv2.createBackgroundSubtractorMOG2()
     # else:
-     # backSub = cv2.createBackgroundSubtractorKNN()
+    # backSub = cv2.createBackgroundSubtractorKNN()
 
     # # if a video path was not supplied, grab a reference to the webcam
     # if not args.get("input", False):
@@ -205,10 +225,10 @@ class PeopleCounter:
     # # otherwise, grab a reference to the video file
     # else:
     #  print("[INFO] opening video file...")
-      # # f.write("[INFO] opening video file...\n")
+    # # f.write("[INFO] opening video file...\n")
 
-      # vs = cv2.VideoCapture(args["input"])
-    vs = cv2.VideoCapture(path_vdo_input_NB3_1t)
+    # vs = cv2.VideoCapture(args["input"])
+    vs = cv2.VideoCapture(path_vdo_input_DT3_1t)
 
     if not vs.isOpened:
         # print('Unable to open: ' + args.input)
@@ -305,12 +325,12 @@ class PeopleCounter:
         # grab the next c_frame and handle if we are reading from either
         # VideoCapture or VideoStream
         c_frame = vs.read()
-        c_frame = c_frame[1] if path_vdo_input_NB3_1t else c_frame
+        c_frame = c_frame[1] if path_vdo_input_DT3_1t else c_frame
 
         # if we are viewing a video and we did not grab a frame then we
         # have reached the end of the video
         # if args["input"] is not None and c_frame is None:
-        if path_vdo_input_NB3_1t is not None and c_frame is None:
+        if path_vdo_input_DT3_1t is not None and c_frame is None:
             break
 
         # resize the frame to have a maximum width of 500 pixels (the
