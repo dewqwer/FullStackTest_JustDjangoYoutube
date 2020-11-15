@@ -23,7 +23,7 @@ class Faculty extends React.Component {
     }
 
     getFacultyList = () => {
-        axios.get("http://127.0.0.1:8000/api-web/Major/")
+        axios.get("https://fullstacktest-justdjango.herokuapp.com/api-web/Major/")
             .then(res => {
                 const data = res.data;
                 this.setState({ data });
