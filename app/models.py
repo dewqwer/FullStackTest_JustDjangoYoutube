@@ -1,18 +1,102 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
 # Create your models here.
+
+# Note that this is different than null. null is purely database-related,
+# whereas blank is validation-related. If a field has blank=True,
+# form validation will allow entry of an empty value.
+# If a field has blank=False, the field will be required.
 
 
 class Faculty(models.Model):
     facultyID = models.AutoField(primary_key=True)
-    facultyName = models.CharField(max_length=40)
-    peopleInFaculty = models.PositiveIntegerField()
-    university = models.CharField(max_length=40)
-    queueFaculty = models.PositiveIntegerField()
-    queueFacultyPassed = models.BooleanField(null=True)
+    facultyName = models.CharField(max_length=100, unique=True)
+    peopleInFaculty = models.PositiveIntegerField(null=True)
+
+    # สร้างเงื่อนไข ถ้า frontend กรอกเป็น - ให้ทำการเก็บค่าเป็น null
+    queueFaculty = models.PositiveIntegerField(null=True)
 
     def __str__(self):
         return "{} {}".format(self.facultyID, self.facultyName)
 
     class Meta:
         db_table = "faculty"
+
+
+class Major(models.Model):
+    majorID = models.AutoField(primary_key=True)
+    majorName = models.CharField(max_length=100)
+    typeDegree = models.CharField(max_length=100)
+
+    # สร้างเงื่อนไข ถ้า frontend กรอกเป็น 0 ให้ทำการเก็บค่าเป็น null
+    peopleInMajor = models.PositiveIntegerField(null=True)
+
+    # สร้างเงื่อนไข ถ้า frontend กรอกเป็น - ให้ทำการเก็บค่าเป็น null
+    queueMajor = models.PositiveIntegerField(null=True)
+
+    facultyID = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE, null=True, db_column='faculty_facultyID')
+
+    def __str__(self):
+        return "{} {} {}".format(Faculty.__str__(self.facultyID), self.typeDegree, self.majorName)
+
+    class Meta:
+        db_table = "major"
+
+
+class GraduationDetail(models.Model):
+    detailID = models.AutoField(primary_key=True)
+    academinYear = models.PositiveIntegerField()
+
+    # กำหนดรูปแบบเป็น yyyy-mm-dd
+    date = models.DateField(null=True)
+
+    typeCeremony = models.BooleanField()
+    round = models.PositiveIntegerField(null=True)
+    place = models.CharField(max_length=100, null=True, blank=True)
+    facultyID = models.ForeignKey(
+        Faculty, on_delete=models.CASCADE, null=True, db_column='faculty_facultyID')
+
+    def __str__(self):
+        return "{} {} {}".format("ปีการศึกษา", self.academinYear, Faculty.__str__(self.facultyID))
+
+    class Meta:
+        db_table = "graduation_detail"
+
+
+class timeMajor(models.Model):
+    timeID = models.AutoField(primary_key=True)
+
+    timeStart = models.TimeField(null=True)
+    timeStop = models.TimeField(null=True)
+    timeExpect = models.TimeField(null=True)
+
+    requireMeanTime = models.PositiveIntegerField(null=True)
+    speed = models.CharField(max_length=100, choices=[(
+        'OK', 'OK'), ('NOT OK', 'NOT OK')], null=True, blank=True)
+    majorID = models.ForeignKey(
+        Major, on_delete=models.CASCADE, null=True, db_column='major_majorID')
+
+    detailID = models.OneToOneField(
+        GraduationDetail, on_delete=models.CASCADE, db_column='graduation_detail_detailID')
+
+    def __str__(self):
+        return Major.__str__(self.majorID)
+
+    class Meta:
+        db_table = "time_major"
+
+
+class CountRealTime(models.Model):
+    countID = models.AutoField(primary_key=True)
+
+    # กำหนดรูปแบบเป็น yyyy-mm-dd
+    date = models.DateField(null=True)
+
+    round = models.PositiveIntegerField(null=True)
+    peopleCount = models.PositiveIntegerField(null=True)
+
+    class Meta:
+        db_table = "count_real_time"
