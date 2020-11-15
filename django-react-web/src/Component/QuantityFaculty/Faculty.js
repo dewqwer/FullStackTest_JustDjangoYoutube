@@ -4,11 +4,9 @@ import '../../CSS/Quantity.css';
 import axios from "axios";
 
 class Faculty extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            data: [],
-        };
+
+    state = {
+        data: [],
     }
 
     componentDidMount() {
