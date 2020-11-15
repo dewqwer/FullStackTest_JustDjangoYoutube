@@ -43,7 +43,17 @@ class Faculty extends React.Component {
                     );
                 }
                 )}
+
+                <div>
+                    <h2>ทดสอบข้อความ มีปัญหาทีไหนกันแน่จ้ะ - -</h2>
+
+                </div>
+
             </div>
+
+
+
+
         );
     }
 }
