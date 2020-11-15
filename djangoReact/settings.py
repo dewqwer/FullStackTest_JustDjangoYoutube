@@ -130,13 +130,9 @@ WSGI_APPLICATION = 'djangoReact.wsgi.application'
 
 
 # DB Postgre Heroku
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
-
 
 # DATABASES = {
 #     'default': {
