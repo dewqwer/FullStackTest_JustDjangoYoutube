@@ -33,6 +33,7 @@ class Faculty extends React.Component {
 
 
     render() {
+        console.log(this.state.data)
         return (
             <div className="flex-container-column">
                 {this.state.data.map(major => {
