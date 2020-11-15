@@ -1,91 +1,53 @@
-import React from "react";
-import { Form, Input, Button } from "antd";
-import { connect } from "react-redux";
+import React from 'react';
+import '../../CSS/Quantity.css';
+
 import axios from "axios";
 
-const FormItem = Form.Item;
-
-
 class Faculty extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: [],
+        };
+    }
 
-    handleFormSubmit = async (event, requestType, facultyID) => {
-        event.preventDefault();
-
-        const postObj = {
-            title: event.target.elements.title.value,
-            content: event.target.elements.content.value
-        }
-
+    componentDidMount() {
         axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
         axios.defaults.xsrfCookieName = "csrftoken";
         axios.defaults.headers = {
             "Content-Type": "application/json",
-            Authorization: `Token ${this.props.token}`,
         };
 
-        if (requestType === "post") {
-            await axios.post("http://127.0.0.1:8000/create/", postObj)
-                .then(res => {
-                    if (res.status === 201) {
-                        this.props.history.push(`/`);
-                    }
-                })
-        } else if (requestType === "put") {
-            await axios.put(`http://127.0.0.1:8000/${facultyID}/update/`, postObj)
-                .then(res => {
-                    if (res.status === 200) {
-                        this.props.history.push(`/`);
-                    }
-                })
-        }
-    };
+        this.getFacultyList();
+
+    }
+
+    getFacultyList = () => {
+        axios.get("http://127.0.0.1:8000/api-web/Major/")
+            .then(res => {
+                const data = res.data;
+                this.setState({ data });
+                console.log(res.data);
+            })
+    }
+
 
     render() {
         return (
-            <div>
-                <Form
-                    onSubmit={event =>
-                        this.handleFormSubmit(
-                            event,
-                            this.props.requestType,
-                            this.props.facultyID
-                        )
-                    }
-                >
-                    <FormItem label="facultyName">
-                        <Input name="facultyName" placeholder="Put a facultyName here" />
-                    </FormItem>
-
-                    <FormItem label="peopleInFaculty">
-                        <Input name="peopleInFaculty" placeholder="Enter some content ..." />
-                    </FormItem>
-
-                    <FormItem label="university">
-                        <Input name="university" placeholder="Put a title here" />
-                    </FormItem>
-
-                    <FormItem label="queueFaculty">
-                        <Input name="queueFaculty" placeholder="Enter some content ..." />
-                    </FormItem>
-
-                    <FormItem label="queueFacultyPassed">
-                        <Input name="queueFacultyPassed" placeholder="Enter some content ..." />
-                    </FormItem>
-                    <FormItem>
-                        <Button type="primary" htmlType="submit">
-                            {this.props.btnText}
-                        </Button>
-                    </FormItem>
-                </Form>
+            <div className="flex-container-column">
+                {this.state.data.map(major => {
+                    return (
+                        <li key={major.majorId}>
+                            {major.majorName}
+                        </li>
+                    );
+                }
+                )}
             </div>
         );
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        token: state.token
-    };
-};
+
 
 export default Faculty;
