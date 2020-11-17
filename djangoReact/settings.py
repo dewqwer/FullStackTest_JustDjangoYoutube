@@ -16,9 +16,12 @@ import dj_database_url
 
 from pathlib import Path
 
+import django_heroku
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+django_heroku.settings(locals())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -56,6 +59,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+
+    'whitenoise.runserver_nostatic',
+
     'django.contrib.staticfiles',
 
     'app',
@@ -105,7 +111,10 @@ TEMPLATES = [
         # 'DIRS': [],
 
         # React path
-        'DIRS': [REACT_APP_DIR],
+        # 'DIRS': [REACT_APP_DIR],
+
+        'DIRS': [STATIC_ROOT],
+
 
         'APP_DIRS': True,
         'OPTIONS': {
