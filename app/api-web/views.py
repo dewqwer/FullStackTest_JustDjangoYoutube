@@ -20,16 +20,16 @@ from django.http import HttpResponse
 import os
 import logging
 from django.conf import settings
+from django.shortcuts import render
 
 
-index_file_path = os.path.join(settings.REACT_APP_DIR, 'out',
+index_file_path = os.path.join(settings.BASE_DIR, 'django-react-web', 'out',
                                'index.html')
 
 
 def index(request):
     try:
-        with open(index_file_path) as f:
-            return HttpResponse(f.read())
+        return render(request, index_file_path)
     except FileNotFoundError:
         logging.exception('Production build of app not found')
         return HttpResponse(

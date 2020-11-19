@@ -14,14 +14,9 @@ import os
 
 import dj_database_url
 
-from pathlib import Path
-
-import django_heroku
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-django_heroku.settings(locals())
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -30,25 +25,11 @@ django_heroku.settings(locals())
 SECRET_KEY = 'jm^3nlw!p8sfl2l994^fr-wjt$u2h2gjs$nwlaf9@6w$1@!i!0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = True
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = []
 
-
-# For Deploy Heroku "fullstacktest-justdjango"
 ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
-
-
-# About React
-
-REACT_APP_DIR = os.path.join(BASE_DIR, 'django-react-web')
-
-STATICFILES_DIRS = [
-    os.path.join(REACT_APP_DIR, 'out', '_next'),
-]
-
-STATIC_ROOT = os.path.join(REACT_APP_DIR, 'out')
 
 
 # Application definition
@@ -59,18 +40,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-
-    'whitenoise.runserver_nostatic',
-
     'django.contrib.staticfiles',
 
     'app',
 
+    # 'django-react-web'
+
     'rest_framework',
     'rest_framework.authtoken',
-
-    'corsheaders',
-
 ]
 
 REST_FRAMEWORK = {
@@ -80,18 +57,13 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+
 }
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
     'django.contrib.sessions.middleware.SessionMiddleware',
-
-    'corsheaders.middleware.CorsMiddleware',
-
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -99,23 +71,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-
 ROOT_URLCONF = 'djangoReact.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        # 'DIRS': [],
-
-        # React path
-        # 'DIRS': [REACT_APP_DIR],
-
-        'DIRS': [STATIC_ROOT],
-
-
+        'DIRS': [os.path.join(BASE_DIR, 'django-react-web', 'out')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -135,7 +96,6 @@ WSGI_APPLICATION = 'djangoReact.wsgi.application'
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 
-# DB local Postgre
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -147,8 +107,6 @@ WSGI_APPLICATION = 'djangoReact.wsgi.application'
 #     }
 # }
 
-
-# DB Postgre Heroku
 DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
@@ -196,11 +154,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
-# STATIC_URL = '/static/'
+STATIC_URL = '/static/'
 
-# React
-STATIC_URL = '/_next/'
-
-CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
 ]
