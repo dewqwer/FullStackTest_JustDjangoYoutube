@@ -16,7 +16,7 @@ urlpatterns = [
     path('', index, name="index"),
 
 
-    path('Major/', MajorListView.as_view(), name='list'),
+    path('api-web/Major/', MajorListView.as_view(), name='list'),
     path('Major/<pk>', MajorDetailView.as_view()),
     path('Major/add/', MajorCreateView.as_view()),
     path('Major/<pk>/update/', MajorUpdateView.as_view()),
