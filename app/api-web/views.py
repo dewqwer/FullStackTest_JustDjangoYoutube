@@ -23,7 +23,7 @@ from django.conf import settings
 from django.shortcuts import render
 
 
-index_file_path = os.path.join(settings.BASE_DIR, "static")
+index_file_path = os.path.join(settings.BASE_DIR, "static", "app")
 
 
 def index(request):
