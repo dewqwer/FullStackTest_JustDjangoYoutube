@@ -2,36 +2,88 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
 
 
 <body>
-    555555: <p id="time"></p>
+    <!-- ID: <p id="time"></p>
+    Name: <p id="name"></p> -->
+
 
     <script>
-        myMajor();
 
         function myMajor() {
 
-            fetch('https://fullstacktest-justdjango.herokuapp.com/api-web/Major/')
+            // fetch('https://fullstacktest-justdjango.herokuapp.com/api-web/Major/')
+            fetch('http://127.0.0.1:8000/api-web/Major/')
                 .then(response => {
                     return response.json();
                 })
 
                 .then(majors => {
-                    console.log(majors);
                     document.getElementById("time").innerHTML = JSON.stringify(majors);
+                    // document.getElementById("time").innerHTML = JSON.stringify(majors[2].majorID);
+                    // document.getElementById("name").innerHTML = JSON.stringify(majors[2].majorName);
                 })
         }
 
-        for (var i = 0; i < majors.length; i++) {
-            var obj = majors[i];
+        // myMajor();
 
-            console.log(obj.majorName);
+        for (var i = 0, max = all.length; i < max; i++) {
+            // Do something with the element here
         }
 
 
+
+
     </script>
+
+    <!-- <script>
+        var entry = document.getElementById("entry")
+        entry.addEventListener("click", displayDetails);
+
+        var row = 1;
+
+        function displayDetails() {
+            var name = document.getElementById("name").value;
+
+            var display = document.getElementById("display")
+
+        }
+
+
+    </script> -->
+
+    <table id="display" border="1px solid black" width: 100%;>
+        <thead>
+            <tr>
+                <th>ชื่อคณะ</th>
+                <th>ชื่อสาขา</th>
+                <th>ความเร็วในการเดิน</th>
+                <th>เวลาที่ใช้(นาที)</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>SIT</td>
+                <td>IT</td>
+                <td>OK</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>SIT</td>
+                <td>CS</td>
+                <td>NOT OK</td>
+                <td>4</td>
+            </tr>
+        </tbody>
+    </table>
+
+
 
 
 </body>
