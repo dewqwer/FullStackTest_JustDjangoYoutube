@@ -24,7 +24,7 @@ from django.shortcuts import render
 
 
 index_file_path = os.path.join(
-    settings.BASE_DIR, "static", "app", "index.html")
+    settings.BASE_DIR, "app", "static", "app", "index.html")
 
 
 def index(request):
