@@ -27,10 +27,11 @@ from rest_framework.authtoken import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
-    path('api/', include("app.api.urls")),
+    # path('api/', include("app.api.urls")),
+    path('', include("app.api.urls")),
 
     # path('api-web/', include("app.api-web.urls")),
-    path('', include("app.api-web.urls")),
+    # path('', include("app.api-web.urls")),
 
     path('api-token-auth/', views.obtain_auth_token, name='api-token-auth'),
 ]
