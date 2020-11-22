@@ -29,8 +29,7 @@ SECRET_KEY = 'jm^3nlw!p8sfl2l994^fr-wjt$u2h2gjs$nwlaf9@6w$1@!i!0'
 DEBUG = False
 
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost',
-                 'fullstacktest-justdjango.herokuapp.com']
+ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
 
 
 # Application definition
