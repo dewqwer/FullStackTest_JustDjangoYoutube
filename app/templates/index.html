@@ -6,35 +6,42 @@
 
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
 
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
+
+<script src="{% static "app/testJS.js"%}"></script>
+
+
+
 
 
 <body>
-    <!-- ID: <p id="time"></p>
-    Name: <p id="name"></p> -->
+    ID: <p id="time"></p>
+    Name: <p id="name"></p>
 
 
     <script>
 
         function myMajor() {
 
-            fetch('https://fullstacktest-justdjango.herokuapp.com/api-web/Major/')
-                // fetch('http://127.0.0.1:8000/api-web/Major/')
+            fetch('https://fullstacktest-justdjango.herokuapp.com/api/faculty/')
+                // fetch('http://127.0.0.1:8000/api/faculty/')
                 .then(response => {
                     return response.json();
                 })
 
                 .then(majors => {
+                    console.log(majors)
                     document.getElementById("time").innerHTML = JSON.stringify(majors);
                     // document.getElementById("time").innerHTML = JSON.stringify(majors[2].majorID);
                     // document.getElementById("name").innerHTML = JSON.stringify(majors[2].majorName);
                 })
         }
 
-        // myMajor();
+        myMajor();
 
-        for (var i = 0, max = all.length; i < max; i++) {
-            // Do something with the element here
-        }
+        // for (var i = 0, max = all.length; i < max; i++) {
+        //     // Do something with the element here
+        // }
 
 
 

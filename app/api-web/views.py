@@ -1,68 +1,69 @@
-from django.db.models import Q
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-    DestroyAPIView,
-    UpdateAPIView,
-    CreateAPIView
-)
+# from django.db.models import Q
+# from rest_framework.generics import (
+#     ListAPIView,
+#     RetrieveAPIView,
+#     DestroyAPIView,
+#     UpdateAPIView,
+#     CreateAPIView
+# )
 
 
-from app.models import (Major,)
+# from app.models import (Major,)
 
 
-from .serializer import (MajorSerializer,)
+# from .serializer import (MajorSerializer,)
 
 
-from rest_framework import permissions
+# from rest_framework import permissions
 
-from django.http import HttpResponse
-import os
-import logging
-from django.conf import settings
-from django.shortcuts import render
-
-
-index_file_path = os.path.join(
-    settings.BASE_DIR, "app", "static", "app", "index.html")
+# from django.http import HttpResponse
+# import os
+# import logging
+# from django.conf import settings
+# from django.shortcuts import render
 
 
-def index(request):
-    try:
-        return render(request, index_file_path)
-    except FileNotFoundError:
-        logging.exception('Production build of app not found')
-        return HttpResponse(
-            status=501,
-        )
+# index_file_path = os.path.join(
+#     settings.BASE_DIR, "app", "static", "app", "index.html")
 
 
-class MajorListView(ListAPIView):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
-    permission_classes = (permissions.AllowAny, )
-    # permission_classes = (permissions.IsAuthenticated, )
+# def index(request):
+#     try:
+#         return render(request, "index.html")
+#         # return render(request, index_file_path)
+#     except FileNotFoundError:
+#         logging.exception('Production build of app not found')
+#         return HttpResponse(
+#             status=501,
+#         )
 
 
-class MajorDetailView(RetrieveAPIView):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
-    permission_classes = (permissions.AllowAny, )
+# class MajorListView(ListAPIView):
+#     queryset = Major.objects.all()
+#     serializer_class = MajorSerializer
+#     permission_classes = (permissions.AllowAny, )
+#     # permission_classes = (permissions.IsAuthenticated, )
 
 
-class MajorCreateView(CreateAPIView):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
-    permission_classes = (permissions.AllowAny, )
+# class MajorDetailView(RetrieveAPIView):
+#     queryset = Major.objects.all()
+#     serializer_class = MajorSerializer
+#     permission_classes = (permissions.AllowAny, )
 
 
-class MajorUpdateView(UpdateAPIView):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
-    permission_classes = (permissions.AllowAny, )
+# class MajorCreateView(CreateAPIView):
+#     queryset = Major.objects.all()
+#     serializer_class = MajorSerializer
+#     permission_classes = (permissions.AllowAny, )
 
 
-class MajorDeleteView(DestroyAPIView):
-    queryset = Major.objects.all()
-    serializer_class = MajorSerializer
-    permission_classes = (permissions.AllowAny, )
+# class MajorUpdateView(UpdateAPIView):
+#     queryset = Major.objects.all()
+#     serializer_class = MajorSerializer
+#     permission_classes = (permissions.AllowAny, )
+
+
+# class MajorDeleteView(DestroyAPIView):
+#     queryset = Major.objects.all()
+#     serializer_class = MajorSerializer
+#     permission_classes = (permissions.AllowAny, )
