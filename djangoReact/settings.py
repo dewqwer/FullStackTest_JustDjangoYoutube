@@ -27,9 +27,9 @@ SECRET_KEY = 'jm^3nlw!p8sfl2l994^fr-wjt$u2h2gjs$nwlaf9@6w$1@!i!0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
 
-ALLOWED_HOSTS = ['fullstacktest-justdjango.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost',
+                 'fullstacktest-justdjango.herokuapp.com']
 
 
 # Application definition
@@ -63,6 +63,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -70,6 +71,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'djangoReact.urls'
 
@@ -162,3 +165,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static", "app"),
     '/var/www/static/',
 ]
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
