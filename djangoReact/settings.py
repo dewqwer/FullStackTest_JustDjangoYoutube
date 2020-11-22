@@ -115,12 +115,6 @@ DATABASES = {
     'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
@@ -162,10 +156,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
-    # os.path.join(BASE_DIR, "static", "app"),
     '/var/www/static/',
 ]
-
-# PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
