@@ -13,10 +13,6 @@ from django.contrib.auth.models import User
 class Faculty(models.Model):
     facultyID = models.AutoField(primary_key=True)
     facultyName = models.CharField(max_length=100, unique=True)
-    peopleInFaculty = models.PositiveIntegerField(null=True)
-
-    # สร้างเงื่อนไข ถ้า frontend กรอกเป็น - ให้ทำการเก็บค่าเป็น null
-    queueFaculty = models.PositiveIntegerField(null=True)
 
     def __str__(self):
         return "{} {}".format(self.facultyID, self.facultyName)
@@ -30,12 +26,6 @@ class Major(models.Model):
     majorName = models.CharField(max_length=100)
     typeDegree = models.CharField(max_length=100)
 
-    # สร้างเงื่อนไข ถ้า frontend กรอกเป็น 0 ให้ทำการเก็บค่าเป็น null
-    peopleInMajor = models.PositiveIntegerField(null=True)
-
-    # สร้างเงื่อนไข ถ้า frontend กรอกเป็น - ให้ทำการเก็บค่าเป็น null
-    queueMajor = models.PositiveIntegerField(null=True)
-
     facultyID = models.ForeignKey(
         Faculty, on_delete=models.CASCADE, null=True, db_column='faculty_facultyID')
 
@@ -48,7 +38,7 @@ class Major(models.Model):
 
 class GraduationDetail(models.Model):
     detailID = models.AutoField(primary_key=True)
-    academinYear = models.PositiveIntegerField()
+    academicYear = models.PositiveIntegerField()
 
     # กำหนดรูปแบบเป็น yyyy-mm-dd
     date = models.DateField(null=True)
@@ -56,8 +46,6 @@ class GraduationDetail(models.Model):
     typeCeremony = models.BooleanField()
     round = models.PositiveIntegerField(null=True)
     place = models.CharField(max_length=100, null=True, blank=True)
-    facultyID = models.ForeignKey(
-        Faculty, on_delete=models.CASCADE, null=True, db_column='faculty_facultyID')
 
     def __str__(self):
         return "{} {} {}".format("ปีการศึกษา", self.academinYear, Faculty.__str__(self.facultyID))
@@ -69,6 +57,7 @@ class GraduationDetail(models.Model):
 class timeMajor(models.Model):
     timeID = models.AutoField(primary_key=True)
 
+    # '%H:%M:%S', # '14:30:59'
     timeStart = models.TimeField(null=True)
     timeStop = models.TimeField(null=True)
     timeExpect = models.TimeField(null=True)
@@ -76,10 +65,11 @@ class timeMajor(models.Model):
     requireMeanTime = models.PositiveIntegerField(null=True)
     speed = models.CharField(max_length=100, choices=[(
         'OK', 'OK'), ('NOT OK', 'NOT OK')], null=True, blank=True)
+
     majorID = models.ForeignKey(
         Major, on_delete=models.CASCADE, null=True, db_column='major_majorID')
 
-    detailID = models.OneToOneField(
+    detailID = models.ForeignKey(
         GraduationDetail, on_delete=models.CASCADE, db_column='graduation_detail_detailID')
 
     def __str__(self):
@@ -89,14 +79,18 @@ class timeMajor(models.Model):
         db_table = "time_major"
 
 
-class CountRealTime(models.Model):
-    countID = models.AutoField(primary_key=True)
+class queue_Management(models.Model):
+    queueManagementID = models.AutoField(primary_key=True)
+    queueMajor = models.PositiveIntegerField(null=True)
+    peopleInMajor = models.PositiveIntegerField(null=True)
 
-    # กำหนดรูปแบบเป็น yyyy-mm-dd
-    date = models.DateField(null=True)
+    majorID = models.ForeignKey(
+        Major, on_delete=models.CASCADE, null=True, db_column='major_majorID')
 
-    round = models.PositiveIntegerField(null=True)
-    peopleCount = models.PositiveIntegerField(null=True)
+    detailID = models.ForeignKey(
+        GraduationDetail, on_delete=models.CASCADE, db_column='graduation_detail_detailID')
 
-    class Meta:
-        db_table = "count_real_time"
+
+class View(models.Model):
+    majorID = models.AutoField(primary_key=True)
+    majorName = models.CharField(max_length=100)
