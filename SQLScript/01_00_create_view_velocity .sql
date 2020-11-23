@@ -1,28 +1,36 @@
--- View: public.view_web
+-- View: public.view_velocity
 
--- DROP VIEW public.view_web;
+-- DROP VIEW public.view_velocity;
 
-CREATE OR REPLACE VIEW public.view_web
+CREATE OR REPLACE VIEW public.view_velocity
  AS
  SELECT tmq."majorID",
+    tmq."queueMajor",
+    tmq."typeDegree",
+    tmq."majorName",
+    tmq."timeStart",
+    tmq."timeStop",
+    tmq."requireMeanTime",
     tmq.speed,
     tmq."faculty_facultyID",
-    tmq."majorName",
     tmq."graduation_detail_detailID",
-    tmq."queueMajor",
     f."facultyID",
     f."facultyName"
-   FROM (( SELECT m."majorID",
+   FROM ( SELECT m."majorID",
+            q."queueMajor",
+            m."typeDegree",
+            m."majorName",
+            t."timeStart",
+            t."timeStop",
+            t."requireMeanTime",
             t.speed,
             m."faculty_facultyID",
-            m."majorName",
-            q."graduation_detail_detailID",
-            q."queueMajor"
-           FROM ((time_major t
-             JOIN major m ON ((m."majorID" = t."major_majorID")))
-             JOIN "queue_Management" q ON ((q."major_majorID" = m."majorID")))) tmq
-     JOIN faculty f ON ((f."facultyID" = tmq."faculty_facultyID")));
+            q."graduation_detail_detailID"
+           FROM time_major t
+             JOIN major m ON m."majorID" = t."major_majorID"
+             JOIN "queue_Management" q ON q."major_majorID" = m."majorID") tmq
+     JOIN faculty f ON f."facultyID" = tmq."faculty_facultyID";
 
-ALTER TABLE public.view_web
+ALTER TABLE public.view_velocity
     OWNER TO myuser;
 
