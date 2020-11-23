@@ -60,7 +60,6 @@ class timeMajor(models.Model):
     # '%H:%M:%S', # '14:30:59'
     timeStart = models.TimeField(null=True)
     timeStop = models.TimeField(null=True)
-    timeExpect = models.TimeField(null=True)
 
     requireMeanTime = models.PositiveIntegerField(null=True)
     speed = models.CharField(max_length=100, choices=[(
@@ -79,7 +78,7 @@ class timeMajor(models.Model):
         db_table = "time_major"
 
 
-class queue_Management(models.Model):
+class QueueManagement(models.Model):
     queueManagementID = models.AutoField(primary_key=True)
     queueMajor = models.PositiveIntegerField(null=True)
     peopleInMajor = models.PositiveIntegerField(null=True)
@@ -90,7 +89,5 @@ class queue_Management(models.Model):
     detailID = models.ForeignKey(
         GraduationDetail, on_delete=models.CASCADE, db_column='graduation_detail_detailID')
 
-
-class View(models.Model):
-    majorID = models.AutoField(primary_key=True)
-    majorName = models.CharField(max_length=100)
+    class Meta:
+        db_table = "queue_Management"
