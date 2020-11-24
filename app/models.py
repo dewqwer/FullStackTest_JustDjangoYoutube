@@ -27,7 +27,7 @@ class Major(models.Model):
     typeDegree = models.CharField(max_length=100)
 
     facultyID = models.ForeignKey(
-        Faculty, on_delete=models.CASCADE, null=True, db_column='faculty_facultyID')
+        Faculty, related_name='faculty_major',on_delete=models.CASCADE, null=True, db_column='faculty_facultyID')
 
     def __str__(self):
         return "{} {} {}".format(Faculty.__str__(self.facultyID), self.typeDegree, self.majorName)
@@ -54,7 +54,7 @@ class GraduationDetail(models.Model):
         db_table = "graduation_detail"
 
 
-class timeMajor(models.Model):
+class TimeMajor(models.Model):
     timeID = models.AutoField(primary_key=True)
 
     # '%H:%M:%S', # '14:30:59'
@@ -84,10 +84,10 @@ class QueueManagement(models.Model):
     peopleInMajor = models.PositiveIntegerField(null=True)
 
     majorID = models.ForeignKey(
-        Major, on_delete=models.CASCADE, null=True, db_column='major_majorID')
+        Major, related_name='major_queue_management',on_delete=models.CASCADE, null=True, db_column='major_majorID')
 
     detailID = models.ForeignKey(
         GraduationDetail, on_delete=models.CASCADE, db_column='graduation_detail_detailID')
 
     class Meta:
-        db_table = "queue_Management"
+        db_table = "queue_management"
