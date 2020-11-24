@@ -10,8 +10,17 @@ from rest_framework.generics import (
 
 from app.models import (Faculty,)
 
+from app.models import (Major,)
+
+from app.models import (QueueManagement,)
+
 
 from .serializer import (FacultySerializer,)
+
+
+from .serializer import (FacultyJoinMajorSerializer,)
+
+from .serializer import (MajorJoinQueueManagementSerializer,)
 
 
 from rest_framework import permissions
@@ -66,4 +75,22 @@ class FacultyUpdateView(UpdateAPIView):
 class FacultyDeleteView(DestroyAPIView):
     queryset = Faculty.objects.all()
     serializer_class = FacultySerializer
+    permission_classes = (permissions.AllowAny, )
+
+class FacultyJoinMajorListView(ListAPIView):
+    test=Major.objects.select_related('facultyID')
+    print(test.query)
+
+    queryset = Faculty.objects.all()
+    print(queryset)
+    serializer_class = FacultyJoinMajorSerializer
+    permission_classes = (permissions.AllowAny, )
+
+class MajorJoinQueueManagementListView(ListAPIView):
+    test=QueueManagement.objects.select_related('majorID')
+    print("majorJaaaa::: ",test.query)
+
+    queryset = Major.objects.all()
+    print(queryset)
+    serializer_class = MajorJoinQueueManagementSerializer
     permission_classes = (permissions.AllowAny, )

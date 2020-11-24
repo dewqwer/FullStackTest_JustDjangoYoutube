@@ -7,6 +7,14 @@ from .views import (FacultyCreateView,
                     FacultyUpdateView,
                     )
 
+from .views import (FacultyJoinMajorListView,
+                    )
+
+from .views import(
+    MajorJoinQueueManagementListView
+
+)                
+
 from .views import index
 
 from django.conf import settings
@@ -23,6 +31,10 @@ urlpatterns = [
     path('api/faculty/add/', FacultyCreateView.as_view()),
     path('api/faculty/<pk>/update/', FacultyUpdateView.as_view()),
     path('api/faculty/<pk>/delete/', FacultyDeleteView.as_view()),
+    
+    path('api/facultyMajor/', FacultyJoinMajorListView.as_view()),
+    
+    path('api/majorQueue/', MajorJoinQueueManagementListView.as_view()),
 
 
 
